@@ -10,10 +10,11 @@
   <h2>
     Please entry your name to continue
   </h2>
-  <form action="check_name.php">
+  <form action="check_name.php" method="post" id="form1">
     name:<br>
     <input type="text" name="name"><br>
   </form>
+  <button type="submit" form="form1" value="Submit">Submit</button>
 
 </body>
 </html>
