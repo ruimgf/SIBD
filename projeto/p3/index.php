@@ -1,15 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to HealtCare </title>
+  </head>
+<body>
+  <h1>
+    Welcome to your HealtCare Web Page
+  </h1>
+  <h2>
+    Please entry your name to continue
+  </h2>
+  <form action="check_name.php">
+    name:<br>
+    <input type="text" name="name"><br>
+  </form>
+
+</body>
+</html>
 <?php
-include 'config.php';
-
-
-try {
-   $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password']);
-} catch (PDOException $exception) {
-      echo("<p>Error: ");
-      echo($exception->getMessage());
-      echo("</p>");
-}
-
-  $connetion = NULL;
-
 ?>
