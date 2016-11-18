@@ -12,5 +12,4 @@ try {
 
   $connetion = NULL;
 
-
 ?>
