@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to HealtCare </title>
+    <title>Welcome to HealthCare </title>
   </head>
 <body>
   <h1>
-    Welcome to your HealtCare Web Page
+    Welcome to your Health Care Web Page
   </h1>
   <h2>
     Please entry your name to continue
