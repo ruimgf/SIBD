@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,7 @@
 <body>
 
   <?php
+
   include 'config.php';
 
   try {
@@ -46,12 +48,14 @@
         <th>patient_id</th>
       </tr>';
       echo "Name found</br>";
+      $_SESSION['patient_id'] = $result['patient_id'];
       foreach( $result as $row)
       {
         echo "<td>$name</td>";
         echo "<td>";
         echo $row['patient_id'];
         echo "</td>";
+        $_SESSION['patient_id'] = $row['patient_id'];
       }
       echo "</table>";
       echo "<a href='newappointment.php'>Make Appoint</a></br>";

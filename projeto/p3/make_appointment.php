@@ -1,6 +1,8 @@
+<?php session_start(); ?>
 <?php
 
   include 'config.php';
+
   try {
   $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
@@ -11,9 +13,10 @@
   }
 
   $doctor_id = $_REQUEST['doctor_id'];
-  $patient_id = 1;
+  $patient_id = $_SESSION['patient_id'];
   $date = $_REQUEST['date'];
   $office = $_REQUEST['office'];
+
 
   try {
     $stmt = $connetion->prepare("INSERT INTO appointment (patient_id,doctor_id,appointment_date,office)

@@ -1,5 +1,6 @@
+<?php session_start(); ?>
 <?php
-
+  session_start();
   include 'config.php';
   try {
   $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],

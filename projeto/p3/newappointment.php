@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +10,7 @@
   <form action="make_appointment.php" method="post" id="form1">
     <?php
     include 'config.php';
-
+    
     try {
       $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
       array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
@@ -20,6 +21,8 @@
     }
       $sql = "SELECT name,doctor_id FROM doctor";
       $result = $connetion->query($sql);
+      echo ("patient".$_SESSION['patient_id']);
+      echo "</br>";
       echo "<p>Doctor:";
       echo "<select name='doctor_id'>";
       foreach ($result as $value) {
