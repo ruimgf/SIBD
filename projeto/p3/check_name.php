@@ -21,7 +21,7 @@
 
 
   $name = $_REQUEST['name'];
-
+  $_SESSION['name'] = $name;
 
   try {
     $stmt = $connetion->prepare("SELECT patient_id FROM
@@ -47,7 +47,6 @@
         <th>Name</th>
         <th>patient_id</th>
       </tr>';
-      echo "Name found</br>";
       $_SESSION['patient_id'] = $result['patient_id'];
       foreach( $result as $row)
       {

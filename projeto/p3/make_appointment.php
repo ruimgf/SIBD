@@ -2,20 +2,25 @@
 <?php
 
   include 'config.php';
-
-  try {
-  $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
-    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
-  } catch (PDOException $exception) {
-    echo("<p>Error: ");
-    echo($exception->getMessage());
-    echo("</p>");
+  if($_REQUEST['doctor_id']== NULL || $_REQUEST['date'] == NULL || $_REQUEST['office']==NULL){
+    echo "error";
+    exit();
   }
 
   $doctor_id = $_REQUEST['doctor_id'];
   $patient_id = $_SESSION['patient_id'];
   $date = $_REQUEST['date'];
   $office = $_REQUEST['office'];
+
+
+  try {
+    $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
+    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+  } catch (PDOException $exception) {
+    echo("<p>Error: ");
+    echo($exception->getMessage());
+    echo("</p>");
+  }
 
 
   try {
@@ -34,9 +39,10 @@
   $result = $stmt->execute();
   $connetion = NULL;
   if($result){
-    echo "Success";
-    // go to principal page
-    // make another appointment
+    echo "Success </br>";
+    
+    echo "<a href='newappointment.php'>Make another Appoint</a></br>";
+    echo "<a href='index.php'>Go to first Page</a>";
   }
   else{
     echo "Error";

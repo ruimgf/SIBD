@@ -6,4 +6,32 @@
   $password = "htcp2526";
   $dns = "mysql:host=db.ist.utl.pt;dbname=ist178247";
 
+
+  function echo_doctor(){
+    try {
+      $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
+      array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+    } catch (PDOException $exception) {
+      echo("<p>Error: ");
+        echo($exception->getMessage());
+        echo("</p>");
+    }
+    $sql = "SELECT * FROM doctor";
+    $result = $connetion->query($sql);
+
+    echo "<p>Doctor:";
+    echo "<select name='doctor_id'>";
+    foreach ($result as $value) {
+      echo "<option value=";
+      echo ($value['doctor_id']);
+      echo '>';
+      echo ("Doctor name : ". $value['name']);
+      echo (" | Speciality: ".$value['speciality']);
+      echo "</option>";
+    }
+    echo  "</select>\n";
+    echo  "</p>\n";
+    $connetion = NULL;
+
+  }
 ?>
