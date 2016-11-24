@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php 
+if(isset($_SESSION)){
+  session_destroy();
+}
+session_start(); ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,7 +16,8 @@
     Patient Name:
     <input type="text" name="name" required><br>
   </form>
-  <button type="submit" form="form1" value="Submit">Submit</button>
+  <br/>
+  <button type="submit" form="form1" value="Submit">Search</button>
 
 </body>
 </html>

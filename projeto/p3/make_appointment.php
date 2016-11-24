@@ -48,10 +48,10 @@
   $result = $stmt->execute();
 
   if($result){
-    echo "Success </br>";
+    echo "<h1>Success</h1> </br>";
+    echo "<a href='newappointment.php'><button type='button'>Make another Appoint</button></a>";
+    echo "<a href='index.php'><button type='button'>Go to first Page</button></a></br>";
 
-    echo "<a href='newappointment.php'>Make another Appoint</a></br>";
-    echo "<a href='index.php'>Go to first Page</a>";
   }
   else{
     echo "Error";

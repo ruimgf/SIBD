@@ -35,7 +35,8 @@
     echo("<p>");
     echo("The date that you chosed is a weekend");
     echo("</p>");
-    echo "<a href='newpatient.php'>Try another Date</a>";
+    echo "<a href='newpatient.php'><button type='button'>Try Another</button></a></br>";
+
     exit();
   }
 

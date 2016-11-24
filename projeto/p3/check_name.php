@@ -2,10 +2,9 @@
 <!DOCTYPE html>
 
 <html>
-
+<meta charset="utf-8" />
 <head>
   <title>Welcome to HealtCare </title>
-  <meta charset="utf-8">
 </head>
 <body>
 
@@ -50,8 +49,10 @@
         <th>SELECT</th>
         <th>Name</th>
         <th>patient_id</th>
+        <th>Birthday</th>
+        <th>Address</th>
       </tr>';
-      echo "<form action='newappointment.php' id='form1'>";
+      echo "<form action='newappointment.php' id='form1' method='post'>";
       foreach( $result as $row)
       {
         echo "<tr>";
@@ -59,10 +60,16 @@
         echo $row['patient_id'];
         echo "' checked></td>";
         echo "<td>";
-        echo $row['name'];
+        echo utf8_encode ($row['name']);
         echo "</td>";
         echo "<td>";
         echo $row['patient_id'];
+        echo "</td>";
+        echo "<td>";
+        echo $row['birthday'];
+        echo "</td>";
+        echo "<td>";
+        echo $row['address'];
         echo "</td>";
         echo "</tr>";
       }

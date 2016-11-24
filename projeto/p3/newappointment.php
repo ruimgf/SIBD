@@ -11,10 +11,9 @@
     <?php
       include 'config.php';
       echo_doctor();
-      $_SESSION['patient_id'] = $_REQUEST['patient_id'];
-      if($_SESSION==NULL){
-        echo "error";
-        exit();
+
+      if($_SESSION['patient_id']==NULL){
+        $_SESSION['patient_id'] = $_REQUEST['patient_id'];
       }
     ?>
     Date:<br>
