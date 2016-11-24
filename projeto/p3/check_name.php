@@ -1,8 +1,11 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
+
 <html>
+
 <head>
   <title>Welcome to HealtCare </title>
+  <meta charset="utf-8">
 </head>
 <body>
 
@@ -24,8 +27,8 @@
   $_SESSION['name'] = $name;
 
   try {
-    $stmt = $connetion->prepare("SELECT patient_id FROM
-      patient WHERE name=:name");
+    $stmt = $connetion->prepare("SELECT * FROM
+      patient WHERE name like CONCAT('%',:name, '%')");
   } catch (PDOException $exception) {
       echo("<p>Error: ");
       echo($exception->getMessage());
@@ -39,28 +42,40 @@
 
     if($result == NULL){
       echo "Name not found in data base</br>";
-      echo "<a href='patient.php'>Regist new patient</a></br>";
-      echo "<a href='index.php'>try another</a>";
+      echo "<a href='patient.php'><button type='button'>Regist new patient</button></a></br>";
+
     }else {
       echo "<table border='1pt'>";
       echo '<tr>
+        <th>SELECT</th>
         <th>Name</th>
         <th>patient_id</th>
       </tr>';
-      $_SESSION['patient_id'] = $result['patient_id'];
+      echo "<form action='newappointment.php' id='form1'>";
       foreach( $result as $row)
       {
-        echo "<td>$name</td>";
+        echo "<tr>";
+        echo ("<td> <input type='radio' name='patient_id' value='");
+        echo $row['patient_id'];
+        echo "' checked></td>";
+        echo "<td>";
+        echo $row['name'];
+        echo "</td>";
         echo "<td>";
         echo $row['patient_id'];
         echo "</td>";
-        $_SESSION['patient_id'] = $row['patient_id'];
+        echo "</tr>";
       }
-      echo "</table>";
-      echo "<a href='newappointment.php'>Make Appoint</a></br>";
-      echo "<a href='index.php'>try another</a>";
-    }
 
+      echo "</form>";
+      echo "</table>";
+      echo "</br>";
+      echo "</br>";
+      echo "<button type='submit' form='form1' value='Submit'>Go to Make appointment</button>";
+      echo "</br>";
+      echo "</br>";
+    }
+    echo "<a href='index.php'><button type='button'>Try another</button></a>";
     $connetion = NULL;
 
     ?>

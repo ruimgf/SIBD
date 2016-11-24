@@ -34,4 +34,10 @@
     $connetion = NULL;
 
   }
+
+
+  function isWeekend($date) {
+      date_default_timezone_set("America/New_York");
+      return (date('N', strtotime($date)) >= 6);
+  }
 ?>

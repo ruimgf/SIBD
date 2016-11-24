@@ -22,6 +22,15 @@
     echo("</p>");
   }
 
+  if(isWeekend($date)){
+    echo("<p>");
+    echo("The date that you chosed is a weekend");
+    echo("</p>");
+    echo "<a href='newappointment.php'>Try another Date</a>";
+    exit();
+  }
+
+
 
   try {
     $stmt = $connetion->prepare("INSERT INTO appointment (patient_id,doctor_id,appointment_date,office)
@@ -37,15 +46,16 @@
   $stmt->bindParam(':date', $date,PDO::PARAM_STR);
   $stmt->bindParam(':office', $office,PDO::PARAM_STR);
   $result = $stmt->execute();
-  $connetion = NULL;
+
   if($result){
     echo "Success </br>";
-    
+
     echo "<a href='newappointment.php'>Make another Appoint</a></br>";
     echo "<a href='index.php'>Go to first Page</a>";
   }
   else{
     echo "Error";
-
+    echo $stmt->error();
   }
+  $connetion = NULL;
 ?>

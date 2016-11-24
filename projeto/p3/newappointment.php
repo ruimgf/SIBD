@@ -11,6 +11,11 @@
     <?php
       include 'config.php';
       echo_doctor();
+      $_SESSION['patient_id'] = $_REQUEST['patient_id'];
+      if($_SESSION==NULL){
+        echo "error";
+        exit();
+      }
     ?>
     Date:<br>
     <input type="date" name="date" min="<?php  date_default_timezone_set("America/New_York"); echo (date("Y-m-d")); ?>" required><br>
