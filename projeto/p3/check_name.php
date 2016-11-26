@@ -10,21 +10,10 @@
 
   <?php
 
-  include 'config.php';
-
-  try {
-    $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
-    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
-  } catch (PDOException $exception) {
-    echo("<p>Error: ");
-    echo($exception->getMessage());
-    echo("</p>");
-  }
-
+  include 'general.php';
 
   $name = $_REQUEST['name'];
   $_SESSION['name'] = $name;
-
   try {
     $stmt = $connetion->prepare("SELECT * FROM
       patient WHERE name like CONCAT('%',:name, '%')");
@@ -41,8 +30,6 @@
 
     if($result == NULL){
       echo "Name not found in data base</br>";
-      echo "<a href='patient.php'><button type='button'>Regist new patient</button></a></br>";
-
     }else {
       echo "<table border='1pt'>";
       echo '<tr>
@@ -53,6 +40,7 @@
         <th>Address</th>
       </tr>';
       echo "<form action='newappointment.php' id='form1' method='post'>";
+      // lets print all patient founded
       foreach( $result as $row)
       {
         echo "<tr>";
@@ -81,8 +69,12 @@
       echo "<button type='submit' form='form1' value='Submit'>Go to Make appointment</button>";
       echo "</br>";
       echo "</br>";
+
     }
+    echo "<a href='patient.php'><button type='button'>Regist new patient</button></a></br>";
     echo "<a href='index.php'><button type='button'>Try another</button></a>";
+
+    //close connetion
     $connetion = NULL;
 
     ?>

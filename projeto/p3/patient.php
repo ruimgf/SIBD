@@ -20,7 +20,7 @@
     <h1>Appointment</h1>
 
     <?php
-      include 'config.php';
+      include 'general.php';
       echo_doctor();
     ?>
 

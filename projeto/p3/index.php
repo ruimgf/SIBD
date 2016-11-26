@@ -1,4 +1,5 @@
-<?php 
+<?php
+// in case of return to begin destruct session 
 if(isset($_SESSION)){
   session_destroy();
 }

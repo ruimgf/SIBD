@@ -1,16 +1,9 @@
 <?php session_start(); ?>
 <?php
-  session_start();
-  include 'config.php';
-  try {
-  $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
-    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
-  } catch (PDOException $exception) {
-    echo("<p>Error: ");
-    echo($exception->getMessage());
-    echo("</p>");
-  }
 
+  include 'general.php';
+
+  // check all arguments
   if($_REQUEST['name'] != NULL || $_REQUEST['birthday'] != NULL || $_REQUEST['address'] != NULL ){
     $name = $_REQUEST['name'];
     $birtday = $_REQUEST['birthday'];
@@ -35,13 +28,14 @@
     echo("<p>");
     echo("The date that you chosed is a weekend");
     echo("</p>");
-    echo "<a href='newpatient.php'><button type='button'>Try Another</button></a></br>";
-
+    echo "<a href='patient.php'><button type='button'>Try Another</button></a></br>";
     exit();
   }
 
 
   $patient_id = sha1($name.$birtday.$address);
+
+
   $connetion->beginTransaction();
   try {
     $stmt1 = $connetion->prepare("INSERT INTO patient (patient_id,name,birthday,address)
@@ -74,6 +68,7 @@
 
   $result1 = $stmt1->execute();
   $result2 = $stmt2->execute();
+  
   if($result1 && $result2){
     echo "Success </br>";
     $connetion->commit();

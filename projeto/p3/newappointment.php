@@ -9,9 +9,8 @@
   <h2>Let's Make an Appointment</h2>
   <form action="make_appointment.php" method="post" id="form1">
     <?php
-      include 'config.php';
-      echo_doctor();
-
+      include 'general.php';
+      echo_doctor(); // echo all doctors founded
       if($_SESSION['patient_id']==NULL){
         $_SESSION['patient_id'] = $_REQUEST['patient_id'];
       }
