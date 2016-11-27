@@ -6,7 +6,8 @@
   // check all arguments
   if($_REQUEST['name'] != NULL || $_REQUEST['birthday'] != NULL || $_REQUEST['address'] != NULL ){
     $name = $_REQUEST['name'];
-    $birtday = $_REQUEST['birthday'];
+    $birtday = strtotime($_REQUEST['birthday']);
+    $birtday = date('Y-m-d',$birtday);
     $address = $_REQUEST['address'];
   }else{
     echo "some arguments are NULL";
@@ -16,7 +17,8 @@
 
   if($_REQUEST['doctor_id'] != NULL || $_REQUEST['birthday'] != NULL || $_REQUEST['address'] != NULL ){
     $doctor_id = $_REQUEST['doctor_id'];
-    $date = $_REQUEST['date'];
+    $date = strtotime($_REQUEST['date']);
+    $date = date('Y-m-d',$date);
     $office = $_REQUEST['office'];
   }else{
     echo "error";
@@ -68,7 +70,7 @@
 
   $result1 = $stmt1->execute();
   $result2 = $stmt2->execute();
-  
+
   if($result1 && $result2){
     echo "Success </br>";
     $connetion->commit();

@@ -11,7 +11,7 @@
     <?php
       include 'general.php';
       echo_doctor(); // echo all doctors founded
-      if($_SESSION['patient_id']==NULL){
+      if($_REQUEST['patient_id']!=NULL){
         $_SESSION['patient_id'] = $_REQUEST['patient_id'];
       }
     ?>
@@ -24,5 +24,3 @@
   <button type="submit" form="form1" value="Submit">Submit</button>
 </body>
 </html>
-<?php
-?>

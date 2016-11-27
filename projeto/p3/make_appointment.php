@@ -9,8 +9,10 @@
 
   $doctor_id = $_REQUEST['doctor_id'];
   $patient_id = $_SESSION['patient_id'];
-  $date = $_REQUEST['date'];
   $office = $_REQUEST['office'];
+
+  $date = strtotime($_REQUEST['date']);
+  $date = date('Y-m-d',$date);
 
   if(isWeekend($date)){
     echo("<p>");
