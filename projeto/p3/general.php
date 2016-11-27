@@ -5,7 +5,7 @@
   $user = "ist178247";
   $password = "htcp2526";
   $dns = "mysql:host=db.ist.utl.pt;dbname=ist178247";
-  date_default_timezone_set("America/New_York");
+  date_default_timezone_set("Europe/Lisbon");
   try {
     $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password']);
   } catch (PDOException $exception) {
@@ -45,7 +45,7 @@
 
 
   function isWeekend($date) {
-      date_default_timezone_set("America/New_York");
+      date_default_timezone_set("Europe/Lisbon");
       return (date('N', strtotime($date)) >= 6);
   }
 ?>

@@ -16,7 +16,7 @@
       }
     ?>
     Date:<br>
-    <input type="date" name="date" min="<?php  date_default_timezone_set("America/New_York"); echo (date("Y-m-d")); ?>" required><br>
+    <input type="date" name="date" min="<?php  date_default_timezone_set("Europe/Lisbon"); echo (date("Y-m-d")); ?>" required><br>
     Office:<br>
     <input type="text" name="office" required><br>
   </form>
