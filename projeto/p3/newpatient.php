@@ -24,10 +24,11 @@
     $connetion = NULL;
     exit();
   }
+
   $today = date("Y-m-d");
   if($today > $date) {
     echo "Error <br/>";
-    echo "Nao pode marcar consultas para o passado <br/>";
+    echo "Your appointment must be in the future<br/>";
     echo "<a href='patient.php'><button type='button'>Try another</button></a>";
     $connetion = NULL;
     exit();
@@ -35,7 +36,7 @@
 
   if($today < $birtday) {
     echo "Error <br/>";
-    echo "Nao pode nascer depois de hoje<br/>";
+    echo "Your don't can be in the future<br/>";
     echo "<a href='patient.php'><button type='button'>Try another</button></a>";
     $connetion = NULL;
     exit();
@@ -43,18 +44,20 @@
 
   if(isWeekend($date)){
     echo("<p>");
-    echo("The date that you chosed is a weekend");
+    echo("The date that you chose is a weekend");
     echo("</p>");
     echo "<a href='patient.php'><button type='button'>Try Another</button></a></br>";
     $connetion = NULL;
     exit();
   }
 
-
+  // generate id
   $patient_id = sha1($name.$birtday.$address);
 
 
   $connetion->beginTransaction();
+
+
   try {
     $stmt1 = $connetion->prepare("INSERT INTO patient (patient_id,name,birthday,address)
     VALUES (:patient_id,:name,:birthday,:address);");
