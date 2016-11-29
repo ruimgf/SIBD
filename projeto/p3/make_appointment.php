@@ -14,6 +14,14 @@
   $date = strtotime($_REQUEST['date']);
   $date = date('Y-m-d',$date);
 
+  $today = date("Y-m-d");
+  if($today > $date) {
+    echo "Error <br/>";
+    echo "Não pode marcar consultas para o passado <br/>";
+    echo "<a href='newappointment.php'><button type='button'>Try another</button></a>";
+    exit();
+  }
+
   if(isWeekend($date)){
     echo("<p>");
     echo("The date that you chosed is a weekend");
@@ -35,7 +43,9 @@
   $stmt->bindParam(':doctor_id', $doctor_id,PDO::PARAM_STR);
   $stmt->bindParam(':date', $date,PDO::PARAM_STR);
   $stmt->bindParam(':office', $office,PDO::PARAM_STR);
+
   $result = $stmt->execute();
+
 
   if($result){
     echo "<h1>Success</h1> </br>";
@@ -43,8 +53,12 @@
     echo "<a href='index.php'><button type='button'>Go to first Page</button></a></br>";
   }
   else{
-    echo "Error";
-    echo $stmt->error();
+    $array = $stmt->errorInfo();
+    echo "Error <br/>";
+    if(strpos($array[2], "Duplicate")==0){
+      echo "consulta no mesmo dia <br/>";
+    }
+    echo "<a href='newappointment.php'><button type='button'>Try another</button></a>";
   }
   $connetion = NULL;
 ?>

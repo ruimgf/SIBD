@@ -25,6 +25,20 @@
     $connetion = NULL;
     exit();
   }
+  $today = date("Y-m-d");
+  if($today > $date) { //do something;
+    echo "Error <br/>";
+    echo "Não pode marcar consultas para o passado <br/>";
+    echo "<a href='patient.php'><button type='button'>Try another</button></a>";
+    exit();
+  }
+
+  if($today < $birtday) { //do something;
+    echo "Error <br/>";
+    echo "Não pode nascer depois de hoje<br/>";
+    echo "<a href='patient.php'><button type='button'>Try another</button></a>";
+    exit();
+  }
 
   if(isWeekend($date)){
     echo("<p>");
@@ -46,6 +60,8 @@
       echo("<p>Error: ");
       echo($exception->getMessage());
       echo("</p>");
+      $connetion->rollback();
+      $connetion = NULL;
   }
 
   try {
@@ -55,6 +71,8 @@
       echo("<p>Error: ");
       echo($exception->getMessage());
       echo("</p>");
+      $connetion->rollback();
+      $connetion = NULL;
   }
 
 

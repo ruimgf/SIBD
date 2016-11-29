@@ -1,9 +1,10 @@
 <?php
-// in case of return to begin destruct session 
-if(isset($_SESSION)){
-  session_destroy();
-}
-session_start(); ?>
+// in case of return to begin destruct session
+  if(isset($_SESSION)){
+    session_destroy();
+  }
+  session_start(); 
+?>
 
 <!DOCTYPE html>
 <html>
