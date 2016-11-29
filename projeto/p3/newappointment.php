@@ -7,6 +7,7 @@
 <body>
   <h1>Appointment</h1>
   <h2>Let's Make an Appointment</h2>
+  <!-- All paremeters are required but this cannot work in some webrowsers -->
   <form action="make_appointment.php" method="post" id="form1">
     <?php
       include 'general.php';
@@ -16,6 +17,7 @@
       }
     ?>
     Date:<br>
+    <!-- Define a min to date cannot work in some browsers  -->
     <input type="date" name="date" min="<?php  date_default_timezone_set("Europe/Lisbon"); echo (date("Y-m-d")); ?>" required><br>
     Office:<br>
     <input type="text" name="office" required><br>

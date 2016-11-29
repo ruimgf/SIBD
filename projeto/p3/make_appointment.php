@@ -1,9 +1,19 @@
 <?php session_start(); ?>
+<!DOCTYPE html>
+
+<html>
+<meta charset="utf-8" />
+<head>
+  <title>Welcome to HealtCare </title>
+</head>
+<body>
+
 <?php
 
   include 'general.php';
+  // Validate Parametes
   if($_REQUEST['doctor_id']== NULL || $_REQUEST['date'] == NULL || $_REQUEST['office']==NULL){
-    echo "error";
+    echo "error some arguments are NULL";
     exit();
   }
 
@@ -17,16 +27,18 @@
   $today = date("Y-m-d");
   if($today > $date) {
     echo "Error <br/>";
-    echo "Não pode marcar consultas para o passado <br/>";
+    echo "You cannot make an appointment to a date before today <br/>";
     echo "<a href='newappointment.php'><button type='button'>Try another</button></a>";
+    $connetion=NULL;
     exit();
   }
 
   if(isWeekend($date)){
     echo("<p>");
-    echo("The date that you chosed is a weekend");
+    echo("The date that you chose is a weekend");
     echo("</p>");
     echo "<a href='newappointment.php'>Try another Date</a>";
+    $connetion=NULL;
     exit();
   }
 
@@ -37,6 +49,8 @@
       echo("<p>Error: ");
       echo($exception->getMessage());
       echo("</p>");
+      $connetion=NULL;
+      exit();
   }
 
   $stmt->bindParam(':patient_id', $patient_id,PDO::PARAM_STR);
@@ -55,10 +69,12 @@
   else{
     $array = $stmt->errorInfo();
     echo "Error <br/>";
-    if(strpos($array[2], "Duplicate")==0){
-      echo "consulta no mesmo dia <br/>";
+    if(strpos($array[2], "Duplicate")==0){ // check if is a duplicate key mensage error
+      echo "You have yet a appointment is this day with this doctor <br/>";
     }
     echo "<a href='newappointment.php'><button type='button'>Try another</button></a>";
   }
   $connetion = NULL;
 ?>
+</body>
+</html>

@@ -14,6 +14,7 @@
     echo("</p>");
   }
 
+  // function that echo a form with all doctors on database
   function echo_doctor(){
     try {
       $connetion = new PDO($GLOBALS['dns'], $GLOBALS['user'],$GLOBALS['password'],
@@ -43,7 +44,7 @@
   }
 
 
-
+  // function that tests if a date is a weekend
   function isWeekend($date) {
       date_default_timezone_set("Europe/Lisbon");
       return (date('N', strtotime($date)) >= 6);

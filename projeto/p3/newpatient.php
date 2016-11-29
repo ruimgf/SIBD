@@ -1,5 +1,5 @@
-<?php session_start(); ?>
-<?php
+<?php session_start();
+
 
   include 'general.php';
 
@@ -11,7 +11,6 @@
     $address = $_REQUEST['address'];
   }else{
     echo "some arguments are NULL";
-    $connetion = NULL;
     exit();
   }
 
@@ -26,17 +25,19 @@
     exit();
   }
   $today = date("Y-m-d");
-  if($today > $date) { //do something;
+  if($today > $date) {
     echo "Error <br/>";
-    echo "Não pode marcar consultas para o passado <br/>";
+    echo "Nao pode marcar consultas para o passado <br/>";
     echo "<a href='patient.php'><button type='button'>Try another</button></a>";
+    $connetion = NULL;
     exit();
   }
 
-  if($today < $birtday) { //do something;
+  if($today < $birtday) {
     echo "Error <br/>";
-    echo "Não pode nascer depois de hoje<br/>";
+    echo "Nao pode nascer depois de hoje<br/>";
     echo "<a href='patient.php'><button type='button'>Try another</button></a>";
+    $connetion = NULL;
     exit();
   }
 
@@ -45,6 +46,7 @@
     echo("The date that you chosed is a weekend");
     echo("</p>");
     echo "<a href='patient.php'><button type='button'>Try Another</button></a></br>";
+    $connetion = NULL;
     exit();
   }
 
@@ -62,6 +64,7 @@
       echo("</p>");
       $connetion->rollback();
       $connetion = NULL;
+      exit();
   }
 
   try {
@@ -73,6 +76,7 @@
       echo("</p>");
       $connetion->rollback();
       $connetion = NULL;
+      exit();
   }
 
 
